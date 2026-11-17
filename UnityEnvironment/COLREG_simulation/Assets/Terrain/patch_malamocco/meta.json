@@ -1,0 +1,19 @@
+{
+  "source": "iim_malamocco.asc",
+  "cell_m": 1.0,
+  "samples": 257,
+  "side_m": 256.0,
+  "origin_E": 291571.24890744,
+  "origin_N": 5022982.6488311,
+  "z_min": -31.8700008392334,
+  "z_max": -12.741000175476074,
+  "valid_fraction": 0.9986979363805659,
+  "unity": {
+    "heightmap_resolution": 257,
+    "terrain_width": 256.0,
+    "terrain_length": 256.0,
+    "terrain_height": 19.129000663757324,
+    "terrain_position_y": -31.8700008392334,
+    "note": "ENU (x,y,z) -> Unity (x, z_up, y_north)"
+  }
+}

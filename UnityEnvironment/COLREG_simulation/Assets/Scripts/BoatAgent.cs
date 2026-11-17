@@ -61,6 +61,10 @@ public class BoatAgent : Agent
 
     [SerializeField] private bool debugMode = false;
 
+    // DEMO MODE: niente timeout, niente target/ostacoli/intrusi, nessun reset per collisioni.
+    // Usato per la demo di ricostruzione del fondale guidando la barca a mano (Heuristic).
+    [SerializeField] private bool demoMode = false;
+
     private System.Random random;
     private System.Random trainRandom;
     private System.Random evalRandom;
@@ -80,7 +84,7 @@ public class BoatAgent : Agent
     public override void Initialize()
     {
 
-        this.MaxStep = 5000; // timer limit for episode, max 5000/100 = 50 s
+        this.MaxStep = demoMode ? 0 : 5000; // 0 = episodio infinito (demo); 5000/100 = 50 s (training)
 
         //int trainSeed = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("train_seed", 0);
         //int evalSeed = (int)Academy.Instance.EnvironmentParameters.GetWithDefault("eval_seed", 0);
@@ -287,14 +291,26 @@ public class BoatAgent : Agent
         // TEST COUNTER
         currentEpisodeStep = 0;
         
-        // Move Obstacles
-        MoveObstacles();
+        if (demoMode)
+        {
+            // Scena COLREG spenta: solo barca, acqua e fondale
+            obstacles.SetActive(false);
+            intruderVessel1.SetActive(false);
+            intruderVessel2.SetActive(false);
+            target.SetActive(false);
+            spawnDistance = 1f;
+        }
+        else
+        {
+            // Move Obstacles
+            MoveObstacles();
 
-        // Move Intruders
-        MoveIntruders();
+            // Move Intruders
+            MoveIntruders();
 
-        // Move Target 
-        MoveTarget();
+            // Move Target 
+            MoveTarget();
+        }
         invSpawnDistance = 1f / Mathf.Max(spawnDistance, 1e-4f);
 
         //Reset Boat Velocities
@@ -304,7 +320,7 @@ public class BoatAgent : Agent
         transform.localPosition = initialPosition;
         transform.localRotation = initialRotation;
 
-        float initialSpeed = 2.1f; // Safe Speed from COLREG
+        float initialSpeed = demoMode ? 0f : 2.1f; // Safe Speed from COLREG (0 in demo)
 
         rb.linearVelocity = transform.forward * initialSpeed;
         rb.angularVelocity = Vector3.zero;
@@ -533,7 +549,7 @@ public class BoatAgent : Agent
         // penalty to maintain stability
         stepReward += -0.00005f * Mathf.Abs(rb.angularVelocity.y);
         // Time penalty
-        stepReward += -10.0f / MaxStep;
+        if (MaxStep > 0) stepReward += -10.0f / MaxStep; // MaxStep = 0 in demo -> evita divisione per zero
 
         AddReward(stepReward); 
  
@@ -552,6 +568,8 @@ public class BoatAgent : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (demoMode) return;
+
         if (!collision.gameObject.CompareTag("Target")) {
             if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Boat")) {
                 AddReward(-10.0f);
@@ -564,6 +582,8 @@ public class BoatAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
+        if (demoMode) return;
+
         if (other.CompareTag("Target"))
         {
             AddReward(10.0f);

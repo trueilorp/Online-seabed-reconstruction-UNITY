@@ -1,46 +1,63 @@
-# --- Unity: COLREG_simulation (Nested) and Builds ---
+# --- Unity: generated folders (project in UnityEnvironment/COLREG_simulation) ---
 **/COLREG_simulation/[Ll]ibrary/
 **/COLREG_simulation/[Tt]emp/
 **/COLREG_simulation/[Oo]bj/
 **/COLREG_simulation/[Bb]uild/
+**/COLREG_simulation/[Bb]uilds/
 **/COLREG_simulation/[Ll]ogs/
 **/COLREG_simulation/[Uu]ser[Ss]ettings/
+**/COLREG_simulation/[Mm]emoryCaptures/
 **/COLREG_simulation/[Pp]ackages/packages-lock.json
+Builds/
+
+# --- IDE-generated project files ---
 *.csproj
 *.sln
 *.slnx
+*.suo
+*.user
 *.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
 mono_crash.*
-Builds/
+sysinfo.txt
+crashlytics-build.properties
 
-# --- Unity objects from thesis project ---
+# --- Unity crash recovery and ML-Agents timers ---
+**/COLREG_simulation/Assets/_Recovery/
+**/COLREG_simulation/Assets/_Recovery.meta
+**/COLREG_simulation/Assets/ML-Agents/Timers/*.json
+**/COLREG_simulation/Assets/ML-Agents/Timers/*.json.meta
+
+# --- Survey outputs (point cloud CSV and Unity Recorder videos) ---
+**/COLREG_simulation/[Rr]ecordings/
+
+# --- Assets excluded upstream ---
 UnityEnvironment/COLREG_simulation/Assets/Models/Boat.prefab
-UnityEnvironment/COLREG_simulation/Assets/Models/Pool.prefab.meta
-UnityEnvironment/COLREG_simulation/Assets/Models/Pool.prefab
-UnityEnvironment/COLREG_simulation/Assets/Models/Environment.prefab.meta
-UnityEnvironment/COLREG_simulation/Assets/Models/Environment.prefab
 UnityEnvironment/COLREG_simulation/Assets/Models/Boat.prefab.meta
+UnityEnvironment/COLREG_simulation/Assets/Models/Pool.prefab
+UnityEnvironment/COLREG_simulation/Assets/Models/Pool.prefab.meta
+UnityEnvironment/COLREG_simulation/Assets/Models/Environment.prefab
+UnityEnvironment/COLREG_simulation/Assets/Models/Environment.prefab.meta
+UnityEnvironment/COLREG_simulation/Assets/Models/Materials/
+UnityEnvironment/COLREG_simulation/Assets/Models/Materials.meta
 
-# --- Pythontrainer and Cache ---
+# --- Python cache ---
 __pycache__/
 *.py[cod]
-**/Pythontrainer/results/
 
-# --- Models checkpoints and tensorboard runs ---
-**/Models/
-**/runs/
-
-# --- IDE & OS (Global junk) ---
+# --- IDE & OS ---
 .vscode/
 .idea/
+.vs/
 .DS_Store
+Thumbs.db
 
-# --- Critical: Do NOT ignore these ---
+# --- Do NOT ignore ---
 !*.physicMaterial
 !*.meta
-
-# --- Timers --- 
-UnityEnvironment/COLREG_simulation/Assets/ML-Agents/Timers/OutdoorsScene_timers.json
-UnityEnvironment/COLREG_simulation/Assets/ML-Agents/Timers/TrainingScene_timers.json
-UnityEnvironment/COLREG_simulation/Assets/ML-Agents/Timers/NewTrainingScene_timers.json
-UnityEnvironment/COLREG_simulation/Assets/ML-Agents/Timers/NewEvalScene_timers.json

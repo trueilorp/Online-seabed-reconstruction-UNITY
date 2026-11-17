@@ -20,3 +20,10 @@
 *.prefab merge=unityyamlmerge eol=lf
 *.unity merge=unityyamlmerge eol=lf
 *.controller merge=unityyamlmerge eol=lf
+
+# --- Binary terrain data (must override the *.asset eol=lf rule above) ---
+UnityEnvironment/COLREG_simulation/Assets/Malamocco.asset binary
+UnityEnvironment/COLREG_simulation/Assets/New?Terrain.asset binary
+*.raw binary
+*.npy binary
+*.ply binary
