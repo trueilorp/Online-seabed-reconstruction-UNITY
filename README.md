@@ -18,10 +18,10 @@ truth, and offline datasets don't arrive as a stream. This simulator provides bo
 - a live point-cloud stream, written to a CSV file while the boat moves;
 - a ground-truth terrain in the same coordinate frame, so the reconstructed mesh can be scored against it.
 
-## How it fits with valor-legno-project
+## How it fits with Online-seabed-reconstruction
 
 This repository is the **data source** for
-[valor-legno-project](https://github.com/trueilorp/valor-legno-project), the Python pipeline that
+[Online-seabed-reconstruction](https://github.com/trueilorp/Online-seabed-reconstruction), the Python pipeline that
 reconstructs the seabed (Poisson / PPSurf, on the full scan or with a sliding window).
 
 In the online experiment, the pipeline reads the CSV as it grows. Every 5 pings it updates a voxel
